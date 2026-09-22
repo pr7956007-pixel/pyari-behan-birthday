@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Pyari Behan ❤️</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{
+  font-family:Georgia,serif;
+  background:radial-gradient(circle at center,#35104d 0%,#13051e 55%,#050208 100%);
+  color:white;
+}
+.screen{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  transition:opacity 1s ease,transform 1s ease;
+}
+#gateScreen{z-index:5;flex-direction:column}
+.title{font-size:clamp(28px,6vw,62px);text-align:center;margin-bottom:10px;text-shadow:0 0 20px #ff7acb}
+.subtitle{font-size:clamp(16px,3vw,24px);opacity:.85;text-align:center;margin-bottom:35px}
+.gate{
+  position:relative;width:min(90vw,520px);height:min(60vh,430px);
+  border:8px solid #d9b36c;border-bottom:14px solid #b78a3f;
+  border-radius:260px 260px 18px 18px;overflow:hidden;
+  box-shadow:0 0 35px #ff73c8, inset 0 0 35px #000;
+  background:#160b20;
+}
+.gate:before,.gate:after{
+  content:"";position:absolute;top:0;width:50%;height:100%;
+  background:linear-gradient(90deg,#531d58,#b44d7e 45%,#461343);
+  transition:transform 1.8s cubic-bezier(.8,0,.2,1);
+  z-index:2;
+}
+.gate:before{left:0;border-right:2px solid #e9c77b}
+.gate:after{right:0;border-left:2px solid #e9c77b}
+.gate.open:before{transform:translateX(-100%)}
+.gate.open:after{transform:translateX(100%)}
+.gateText{
+  position:absolute;z-index:1;inset:0;display:flex;align-items:center;justify-content:center;
+  text-align:center;font-size:28px;color:#ffd9f1;padding:30px;
+}
+.openBtn{
+  margin-top:28px;border:0;border-radius:999px;padding:15px 34px;font-size:20px;
+  font-weight:bold;color:white;cursor:pointer;
+  background:linear-gradient(135deg,#ff4fa3,#a847ff);
+  box-shadow:0 0 25px #ff4fa3;transition:.25s;
+}
+.openBtn:hover{transform:scale(1.06)}
+#birthday{opacity:0;pointer-events:none;overflow:auto}
+#birthday.show{opacity:1;pointer-events:auto}
+.card{
+  width:min(92vw,720px);max-height:92vh;overflow:auto;text-align:center;
+  padding:28px 22px 35px;border-radius:30px;
+  background:rgba(20,5,30,.72);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,180,230,.4);
+  box-shadow:0 0 50px rgba(255,70,180,.35);
+}
+.photoWrap{
+  width:min(72vw,330px);height:min(72vw,330px);margin:5px auto 22px;
+  border-radius:50%;padding:7px;
+  background:linear-gradient(45deg,#ffd36e,#ff4fa3,#b45cff,#ffd36e);
+  animation:glow 2s infinite alternate;
+}
+.photoWrap img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+@keyframes glow{from{box-shadow:0 0 15px #ff4fa3}to{box-shadow:0 0 40px #ffd36e}}
+h1{font-size:clamp(30px,7vw,58px);margin:8px 0;color:#ffd5ed;text-shadow:0 0 18px #ff55ae}
+.message{font-size:clamp(18px,3.5vw,25px);line-height:1.65;color:#fff3fa}
+.small{font-size:16px;opacity:.75}
+.heart{
+  position:fixed;bottom:-30px;font-size:22px;animation:floatUp linear forwards;
+  pointer-events:none;z-index:10;
+}
+@keyframes floatUp{
+  to{transform:translateY(-110vh) rotate(360deg);opacity:0}
+}
+.confetti{
+  position:fixed;top:-15px;width:9px;height:15px;z-index:20;
+  animation:fall linear forwards;pointer-events:none;
+}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.2}}
+</style>
+</head>
+<body>
+
+<section id="gateScreen" class="screen">
+  <div class="title">A Little Surprise For You ❤️</div>
+  <div class="subtitle">For my <b>Pyari Behan</b> — something made especially for you ✨</div>
+
+  <div id="gate" class="gate">
+    <div class="gateText">🎁 Your birthday surprise is waiting inside 🎁</div>
+  </div>
+
+  <button class="openBtn" onclick="openSurprise()">OPEN THE GATE ❤️</button>
+</section>
+
+<section id="birthday" class="screen">
+  <div class="card">
+    <div class="photoWrap">
+      <img src="nilu.jpeg" alt="Birthday photo">
+    </div>
+
+    <h1>Happy Birthday! 🎂❤️</h1>
+    <div class="message">
+      <b>My Pyari Behan 💕</b><br><br>
+      May your life always be filled with happiness,
+      beautiful memories, success and endless smiles. ✨<br><br>
+      Keep smiling, keep shining and always stay the amazing person you are. 🌸
+      <br><br>
+      <b>Happy Birthday once again! 🥳🎂💖</b>
+    </div>
+    <p class="small">Made with love especially for you ❤️</p>
+  </div>
+</section>
+
+<script>
+function openSurprise(){
+  document.getElementById("gate").classList.add("open");
+  document.querySelector(".openBtn").style.display="none";
+
+  setTimeout(()=>{
+    document.getElementById("gateScreen").style.opacity="0";
+    document.getElementById("gateScreen").style.transform="scale(1.08)";
+    document.getElementById("birthday").classList.add("show");
+    launchConfetti();
+    setInterval(makeHeart,450);
+  },1400);
+}
+
+function makeHeart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.textContent=["❤️","💖","💕","💗","✨","🌸"][Math.floor(Math.random()*6)];
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(4+Math.random()*4)+"s";
+  h.style.fontSize=(16+Math.random()*20)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8500);
+}
+
+function launchConfetti(){
+  for(let i=0;i<120;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.animationDuration=(2+Math.random()*4)+"s";
+    c.style.animationDelay=Math.random()*1.5+"s";
+    c.style.transform=`rotate(${Math.random()*360}deg)`;
+    c.style.background=["#ff5ca8","#ffd166","#8be9fd","#c77dff","#ffffff"][Math.floor(Math.random()*5)];
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),6500);
+  }
+}
+</script>
+</body>
+</html>
